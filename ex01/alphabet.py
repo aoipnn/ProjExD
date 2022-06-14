@@ -1,6 +1,6 @@
 import random
 kesson = 2
-mojisu = 10
+mojisuu = 10
 kurikaeshi = 5
 
 def main():
@@ -9,9 +9,9 @@ def main():
         kaitou()
 
 def mondai():
-    global mojisu, kesson
+    global mojisuu, kesson
     alphabets = [chr(j+65) for j in range(26)]
-    al_list = random.sample(alphabets, mojisu)
+    al_list = random.sample(alphabets, mojisuu)
     print(f"対象文字：{al_list}")
 
     kesson_al_list = random.sample(al_list, kesson)
