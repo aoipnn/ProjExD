@@ -26,12 +26,12 @@ list = [[7,0],
         [6,2],[6,1],[6,0],
         [5,2],[5,1],[5,0],[4,2],[4,1],[4,0]]
 for i in list:
-    button = tk.Button(text = x, font = fonts, width = 6, height = 2, foreground = 'seashell4')
+    button = tk.Button(text = x, font = fonts, width = 6, height = 2, foreground = 'black')
     button.bind("<1>", button_click)
     button.grid(row = i[0], column = i[1], padx = 0, pady = 0)
     x += 1
 
-buttonequal = tk.Button(text = "=", font = fonts, width = 4, height = 1, background = "gray")
+buttonequal = tk.Button(text = "=", font = fonts, width = 4, height = 1, background = "sky blue")
 buttonequal.bind("<1>", equal)
 buttonequal.grid(row = 7, column = 2, padx = 0, pady = 0)
 
