@@ -31,4 +31,15 @@ for i in list:
     button.grid(row = i[0], column = i[1], padx = 0, pady = 0)
     x += 1
 
+buttonequal = tk.Button(text = "=", font = fonts, width = 4, height = 1, background = "gray")
+buttonequal.bind("<1>", equal)
+buttonequal.grid(row = 7, column = 2, padx = 0, pady = 0)
+
+list1 = [["+"]]
+y = 3
+for i in list1:
+    button = tk.Button(text = i, font = fonts, width = 4, height = 1, background = "gray")
+    button.bind("<1>", button_click)
+    button.grid(row = y, column = 2, padx = 0, pady = 0)
+
 calc.mainloop()
