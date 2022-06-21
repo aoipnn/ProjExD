@@ -22,7 +22,9 @@ def equal(event):
     entry.insert(tk.END, kotae)
 
 x = 0
-list = [[7,0],[6,2],[6,1],[6,0],[5,2],[5,1],[5,0],[4,2],[4,1],[4,0]]
+list = [[7,0],
+        [6,2],[6,1],[6,0],
+        [5,2],[5,1],[5,0],[4,2],[4,1],[4,0]]
 for i in list:
     button = tk.Button(text = x, font = fonts, width = 6, height = 2, foreground = 'seashell4')
     button.bind("<1>", button_click)
