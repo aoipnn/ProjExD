@@ -41,7 +41,10 @@ def gorilla(event):
     entry.insert(tk.END, p)
 
 x = 0
-list = [[6,1],[5,2],[5,1],[5,0],[4,2],[4,1],[4,0],[3,2],[3,1],[3,0]]
+list = [[6,1],[5,2],[5,1],
+        [5,0],[4,2],[4,1],
+        [4,0],[3,2],[3,1],
+        [3,0]]
 for i in list:
     button = tk.Button(text = x, font = fonts, width = 4, height = 1, foreground = 'black')
     button.bind("<1>", button_click)
