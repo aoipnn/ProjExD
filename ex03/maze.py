@@ -50,6 +50,7 @@ def startgoal():
     canvas.create_rectangle(g_x*100,g_y*100,(g_x*100)+100,
     (g_y*100)+100,fill = "blue")
 
+
 #ゴール地点に到達するまで1秒ずつカウントする関数
 def count_up():
     global tmr, jid
