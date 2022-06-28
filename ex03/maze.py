@@ -35,7 +35,6 @@ def key_down(event):
 #keyの値を初期化する関数
 def key_up(event):
     global key
-    key = event.keysym
     key = ""
 
 #スタート地点とゴール地点決定する関数
