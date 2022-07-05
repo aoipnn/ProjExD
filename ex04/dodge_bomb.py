@@ -50,22 +50,44 @@ def main():
             kkimg_rct.centerx -= 1
         if key_states[pg.K_RIGHT] == True:
             kkimg_rct.centerx += 1
+        #練習7
+        if check_bound(kkimg_rct, screen_rct) != (1, 1):
+            if key_states[pg.K_UP] == True: 
+                kkimg_rct.centery += 1     #Y座標を-1
+            if key_states[pg.K_DOWN] == True:
+                kkimg_rct.centery -= 1
+            if key_states[pg.K_LEFT] == True:
+                kkimg_rct.centerx += 1
+            if key_states[pg.K_RIGHT] == True:
+                kkimg_rct.centerx -= 1
+
         screen_sfc.blit(kkimg_sfc, kkimg_rct)
         #練習6
         bmimg_rct.move_ip(vx, vy)
         #練習5
         screen_sfc.blit(bmimg_sfc, bmimg_rct)
-
-
-
-  
+        #練習7
+        yoko, tate = check_bound(bmimg_rct, screen_rct)
+        vx *= yoko
+        vy *= tate
+        
+        #練習8
+        if kkimg_rct.colliderect(bmimg_rct):
+            return
             
+
+
 
         pg.display.update()
         clock.tick(1000)   
 
-
-    
+def check_bound(rct, screen_rect):
+    yoko, tate = +1, +1
+    if rct.left < screen_rect.left or screen_rect.right < rct.right:
+        yoko = -1
+    if rct.top < screen_rect.top or screen_rect.bottom < rct.bottom:
+        tate = -1
+    return yoko, tate
                  
 
 
