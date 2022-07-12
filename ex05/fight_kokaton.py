@@ -4,6 +4,7 @@ import random
 import pygame.mixer
 import tkinter.messagebox as tkm
 
+
 class Screen:
     def __init__(self, title, wh, image):
         pg.display.set_caption(title)
@@ -14,6 +15,7 @@ class Screen:
 
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct)
+
 
 class Bird:
     def __init__(self, image: str, size: float, xy):
@@ -51,6 +53,7 @@ class Bird:
     def attack(self):
         return Shot(self)
 
+
 class Bomb:
     def __init__(self, color, size, vxy, scr: Screen):
         self.sfc = pg.Surface((2*size, 2*size)) # Surface
@@ -74,6 +77,7 @@ class Bomb:
         # 練習5
         self.blit(scr)   
 
+
 class Shot:
     def __init__(self, chr: Bird):
         self.sfc = pg.image.load("ex05/fig/beam.png")
@@ -89,6 +93,7 @@ class Shot:
         if check_bound(self.rct, scr.rct) != (1,1):
             del self
         self.blit(scr)
+    
     
 def music():
     pygame.mixer.init()    # 初期設定
