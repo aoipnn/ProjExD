@@ -1,8 +1,7 @@
 import pygame as pg
 import sys
 import random
-import pygame.mixer
-import tkinter.messagebox as tkm
+
 
 class Screen:
     def __init__(self, title, wh, image):
@@ -35,7 +34,6 @@ class Bird:
             self.rct.centerx -= 1
         if key_states[pg.K_RIGHT]: 
             self.rct.centerx += 1
-            
         # # 練習7
         if check_bound(self.rct, scr.rct) != (1, 1): # 領域外だったら
             if key_states[pg.K_UP]: 
@@ -47,9 +45,6 @@ class Bird:
             if key_states[pg.K_RIGHT]: 
                 self.rct.centerx -= 1
         self.blit(scr)
-    
-    def attack(self):
-        return Shot(self)
 
 class Bomb:
     def __init__(self, color, size, vxy, scr: Screen):
@@ -72,29 +67,7 @@ class Bomb:
         self.vx *= yoko
         self.vy *= tate   
         # 練習5
-        self.blit(scr)   
-
-class Shot:
-    def __init__(self, chr: Bird):
-        self.sfc = pg.image.load("ex05/fig/beam.png")
-        self.sfc = pg.transform.rotozoom(self.sfc, 0, 0.5)
-        self.rct = self.sfc.get_rect()
-        self.rct.midleft = chr.rct.center
-    
-    def blit(self, scr: Screen):
-        scr.sfc.blit(self.sfc, self.rct)
-
-    def update(self, scr: Screen):
-        self.rct.move_ip(+1, 0)
-        if check_bound(self.rct, scr.rct) != (1,1):
-            del self
-        self.blit(scr)
-    
-def music():
-    pygame.mixer.init()    # 初期設定
-    pygame.mixer.music.load("ex05/fig/MusMus-BGM-146.mp3")     # 音楽ファイルの読み込み
-    pygame.mixer.music.play(-1)                                # 音楽の再生回数(無限)
-     
+        self.blit(scr)          
 
 def main():
     clock = pg.time.Clock()
@@ -102,28 +75,17 @@ def main():
     kkt = Bird("ex05/fig/6.png", 2.0, (900, 400))
     bkd = Bomb((255,0,0), 10, (+1,+1), scr)
 
-    beam = None
-    music()
     while True:
         scr.blit()
 
         # 練習2
         for event in pg.event.get():
-            if event.type == pg.QUIT: 
-                return
-
-            if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-                beam.append(kkt.attack())
+            if event.type == pg.QUIT: return
 
         kkt.update(scr)
         bkd.update(scr)
-
-        if beam:
-            beam.update(bkd.rct)
         if kkt.rct.colliderect(bkd.rct):
-            tkm.showinfo("", "GAME OVER!!")   
             return
-
 
         pg.display.update()
         clock.tick(1000)
@@ -136,10 +98,8 @@ def check_bound(rct, scr_rct):
     [2] scr_rct: スクリーンのRect
     '''
     yoko, tate = +1, +1 # 領域内
-    if rct.left < scr_rct.left or scr_rct.right  < rct.right :
-        yoko = -1 # 領域外
-    if rct.top  < scr_rct.top  or scr_rct.bottom < rct.bottom:
-        tate = -1 # 領域外
+    if rct.left < scr_rct.left or scr_rct.right  < rct.right : yoko = -1 # 領域外
+    if rct.top  < scr_rct.top  or scr_rct.bottom < rct.bottom: tate = -1 # 領域外
     return yoko, tate
 
 
